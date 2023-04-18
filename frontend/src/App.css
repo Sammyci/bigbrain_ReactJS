@@ -1,0 +1,277 @@
+/* Center the text in the app container */
+.App {
+  text-align: center;
+}
+
+/* Remove bullet points from unordered lists */
+ul {
+  list-style: none;
+}
+/* Set the height of the app logo */
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+/* Rotate the app logo */
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+/* Style the app header */
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+/* Set the color of the app link */
+.App-link {
+  color: #61dafb;
+}
+
+/* Spin the app logo */
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Hide elements with the 'hidden' class */
+.hidden {
+  display: none;
+}
+
+/* Center and style the login and register cards */
+.center-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  background-color: #ffffff;
+  width: 44%;
+  padding: 10px;
+  font-size: 2vh;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Style the waiting room container */
+.waiting-room{
+  background-color: #c8e5f0;
+  text-align: center;
+  width: 95%;
+  margin: auto; 
+  padding: 10px;
+  font-size: 2vh;
+}
+
+/* Style the navigation bar */
+.navBar {
+  background-color: #343a40;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  padding-bottom: 50px;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navLink {
+  margin: 0 10px;
+}
+
+.navLink a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 5px;
+  transition: all 0.2s ease-in-out;
+}
+
+.navLink a:hover {
+  background-color: #495057;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Style the button */
+.button {
+  background-color: #666666;
+  color: rgb(255, 255, 255);
+  box-shadow: none;
+  cursor: pointer;
+  font-size: 2vh;
+  border: 0px;
+  padding: 8px;
+  width: 40%;
+  margin: 10px;
+  font-weight: bold;
+}
+
+/* Set the width of small buttons */
+.smallButton{
+  width: 20%;
+}
+
+/* Style the button on hover */
+.button:hover {
+  background-color: #1f1e1e;
+}
+
+/* Style the modal */
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Style the modal content */
+.modal-content {
+  width: 500px;
+  background-color: #fff;
+}
+
+/* Style the modal header and footer */
+.modal-header, .modal-footer {
+  padding: 10px;
+}
+
+/* Style the modal title */
+.modal-title {
+  margin: 0;
+}
+
+/* Style the modal body */
+.modal-body {
+  padding: 10px;
+  max-height: calc(100vh - 200px);
+  overflow-y: scroll;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+/* Style the game card */
+.game-card {
+  background-color: lightgray;
+  padding: 10px;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Style the question data within the game card */
+.question-data {
+background-color: lightgray;
+padding: 10px;
+margin: 5px;
+}
+
+.game-list-container {
+  background-color: rgba(245, 245, 245, 0.3);
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 5px;
+}
+
+.admin-game-container {
+  background-color: rgba(245, 245, 245, 0.5);
+  border: 1px solid #ccc;
+  padding: 2rem;
+}
+
+.admin-game-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-game-thead,
+.admin-game-tbody {
+  text-align: left;
+}
+
+.admin-game-tr {
+  border-bottom: 1px solid #444;
+}
+
+.admin-game-th,
+.admin-game-td {
+  padding: 1rem;
+  font-size: 1rem;
+  color: #fff;
+}
+
+.admin-game-th {
+  color: white;
+  font-weight: 600;
+}
+
+.admin-game-tr:nth-child(odd) {
+  background-color: none;
+}
+
+.admin-game-tr:hover {
+  background-color: none;
+}
+
+.admin-game-tr:last-child {
+  border-bottom: none;
+}
+
+button {
+  background-color: #007bff;
+  border: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 0.25rem;
+}
+
+button:hover {
+  background-color: #0069d9;
+}
+
+.admin-game-th,
+.admin-game-td {
+  padding: 1rem;
+  font-size: 1rem;
+  color: #fff !important;
+}
+

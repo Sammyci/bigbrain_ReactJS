@@ -1,0 +1,56 @@
+.navBar {
+    background-color: #fbd3ff;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 50px;
+  }
+  
+  .navBar ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+  
+  .navBar li {
+    height: 100%;
+  }
+  
+  .navBar a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 10px;
+    color: #333;
+    text-decoration: none;
+    font-size: 1.2em;
+  }
+  
+  .navBar a:hover {
+    background-color: #f2f2f2;
+  }
+  
+  .hidden {
+    display: none;
+  }
+
+  .app {
+    min-height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .app.background1 {
+    background-image: url('./background1.png');
+  }
+  
+  .app.background2 {
+    background-image: url('./background2.png');
+  }

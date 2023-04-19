@@ -10,6 +10,7 @@ function Game () {
   // const [pollStatus, setPollStatus] = useState(true);
   const [timeLeft, setTimeLeft] = useState(null);
   const [correctAnswers, setCorrectAnswers] = useState(() => []);
+  const [currentQuestionId, setCurrentQuestionId] = useState(null);
   const handleAnswerChange = (answerId) => {
     const newSelectedAnswers = [...selectedAnswers];
     if (newSelectedAnswers.includes(answerId)) {
@@ -28,10 +29,12 @@ function Game () {
       if (request) {
         const data = request;
         if (data.error) {
-          setStarted(data.started === false);
-          console.log(data.started);
+          setStarted(false);
+          alert(data.error);
+          console.log(started);
         } else {
           setStarted(data.started);
+          console.log(started);
         }
       }
     } catch (error) {
@@ -47,15 +50,30 @@ function Game () {
         if (data.error === 'Session has not started yet') {
           console.log('1');
         } else if (data.error === 'Session ID is not an active session') {
-          alert('Session ID is not an active session');
+          return (
+          <>
+          <div>
+            <p>Game over</p>
+          </div>
+          </>
+          )
         } else {
           console.error('Error fetching question:', data.error);
         }
       } else {
-        if (data === questionData) {
+        if (data.question.name === currentQuestionId) {
           alert('The next question is not coming');
+        } else if (data === 'Session ID is not an active session') {
+          return (
+            <>
+            <div>
+              <p>Game over</p>
+            </div>
+            </>
+          )
         } else {
           setQuestionData(data);
+          setCurrentQuestionId(data.question.name); // Update currentQuestionId state
           setTimeLeft(data.question.time);
         }
       }
@@ -70,13 +88,10 @@ function Game () {
     try {
       const request = await encapFetch(path, '', 'PUT', '', { answerIds: selectedAnswers });
       // Check if the request is OK
-      if (!request.ok) {
-        console.log(request);
-        throw new Error("Can't move to the next question");
+      if (request.error) {
+        console.log(request.error);
       }
       // Handle request data here
-      const data = await request.json();
-      console.log(data);
     } catch (error) {
       console.error('Error sending answer:', error);
     }

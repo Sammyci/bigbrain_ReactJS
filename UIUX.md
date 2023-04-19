@@ -1,0 +1,1 @@
+We tried to make different interfaces with different layout styles, with clearer options and navigation. We designed a table style layout for the game management interface in admin, so that all game status information can be seen at a glance, and the buttons will change at the same time with different functions.

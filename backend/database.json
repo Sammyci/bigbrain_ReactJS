@@ -1,0 +1,139 @@
+{
+  "admins": {
+    "762194838@qq.com": {
+      "name": "Guanhua PENG",
+      "password": "123",
+      "sessionActive": true
+    },
+    "767719522@qq.com": {
+      "name": "Sam Ci",
+      "password": "csx123654",
+      "sessionActive": true
+    },
+    "767719523@qq.com": {
+      "name": "Dio",
+      "password": "123654",
+      "sessionActive": true
+    }
+  },
+  "quizzes": {
+    "118272805": {
+      "name": "1",
+      "owner": "762194838@qq.com",
+      "questions": [],
+      "thumbnail": null,
+      "active": null,
+      "createdAt": "2023-04-14T14:17:22.395Z"
+    },
+    "123658542": {
+      "name": "test",
+      "owner": "762194838@qq.com",
+      "questions": [],
+      "thumbnail": null,
+      "active": null,
+      "createdAt": "2023-04-14T11:44:30.585Z"
+    },
+    "303053711": {
+      "name": "tt",
+      "owner": "762194838@qq.com",
+      "questions": [],
+      "thumbnail": null,
+      "active": null,
+      "createdAt": "2023-04-14T12:06:04.075Z"
+    },
+    "411783352": {
+      "name": "My first quiz",
+      "owner": "767719522@qq.com",
+      "questions": [
+        {}
+      ],
+      "thumbnail": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==",
+      "active": null,
+      "createdAt": "2023-04-15T12:34:26.516Z"
+    },
+    "492523490": {
+      "name": "111",
+      "owner": "767719522@qq.com",
+      "questions": [],
+      "thumbnail": null,
+      "active": null,
+      "createdAt": "2023-04-17T11:09:58.551Z"
+    },
+    "615266498": {
+      "name": "爱您",
+      "owner": "767719522@qq.com",
+      "questions": [],
+      "thumbnail": null,
+      "active": null,
+      "createdAt": "2023-04-17T10:34:52.605Z"
+    },
+    "651998369": {
+      "name": "test example",
+      "owner": "767719522@qq.com",
+      "questions": [
+        {
+          "name": "1+1=?",
+          "time": 10,
+          "answers": [
+            {
+              "text": "2",
+              "isCorrect": true
+            },
+            {
+              "text": "3",
+              "isCorrect": false
+            },
+            {
+              "text": "1",
+              "isCorrect": false
+            },
+            {
+              "text": "4",
+              "isCorrect": false
+            }
+          ],
+          "correctAnswers": [
+            0
+          ]
+        },
+        {
+          "name": "1+2=?",
+          "time": 23,
+          "answers": [
+            {
+              "text": "3",
+              "isCorrect": true
+            },
+            {
+              "text": "4",
+              "isCorrect": false
+            }
+          ],
+          "correctAnswers": [
+            0
+          ]
+        }
+      ],
+      "thumbnail": "https://th.bing.com/th/id/OIP._b6EPop0rHJw1_C5H1wQvAHaIe?pid=ImgDet&rs=1",
+      "active": null,
+      "createdAt": "2023-04-17T12:42:02.266Z"
+    },
+    "708432320": {
+      "name": "11",
+      "owner": "767719522@qq.com",
+      "questions": [],
+      "thumbnail": null,
+      "active": null,
+      "createdAt": "2023-04-17T11:03:28.099Z"
+    },
+    "847192292": {
+      "name": "为什么这样做",
+      "owner": "767719522@qq.com",
+      "questions": [],
+      "thumbnail": null,
+      "active": null,
+      "createdAt": "2023-04-16T14:21:29.723Z"
+    }
+  },
+  "sessions": {}
+}

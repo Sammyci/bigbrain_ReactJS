@@ -9,7 +9,7 @@ function Game () {
   const [selectedAnswers, setSelectedAnswers] = useState([]);
   // const [pollStatus, setPollStatus] = useState(true);
   const [timeLeft, setTimeLeft] = useState(null);
-  const [correctAnswers, setCorrectAnswers] = useState([]);
+  const [correctAnswers, setCorrectAnswers] = useState(() => []);
   const handleAnswerChange = (answerId) => {
     const newSelectedAnswers = [...selectedAnswers];
     if (newSelectedAnswers.includes(answerId)) {
@@ -19,7 +19,6 @@ function Game () {
       newSelectedAnswers.push(answerId);
     }
     setSelectedAnswers(newSelectedAnswers);
-    handleSubmit();
   };
   const [started, setStarted] = useState(false);
 
@@ -27,9 +26,13 @@ function Game () {
     try {
       const request = await encapFetch(`play/${playerId}/status`, '', 'GET', '', '');
       if (request) {
-        const data1 = request;
-        console.log(data1)
-        setStarted(data1.started);
+        const data = request;
+        if (data.error) {
+          setStarted(data.started === false);
+          console.log(data.started);
+        } else {
+          setStarted(data.started);
+        }
       }
     } catch (error) {
       alert(`Invalid: ${error}`);
@@ -38,23 +41,26 @@ function Game () {
 
   const fetchQuestion = async () => {
     try {
-      const request = await encapFetch(`play/${playerId}/question`, '', 'GET', '', '');
-      if (request) {
-        const data = request;
-        console.log('Question data:', data);
-        const error1 = { error: 'Session has not started yet' };
-        const error2 = { error: 'Session ID is not an active session' };
-        if (data === error1) {
-          alert('Session has not started yet');
-        } else if (data === error2) {
+      const data = await encapFetch(`play/${playerId}/question`, '', 'GET', '', '');
+      console.log('Question data:', data);
+      if (data.error) {
+        if (data.error === 'Session has not started yet') {
+          console.log('1');
+        } else if (data.error === 'Session ID is not an active session') {
           alert('Session ID is not an active session');
+        } else {
+          console.error('Error fetching question:', data.error);
+        }
+      } else {
+        if (data === questionData) {
+          alert('The next question is not coming');
         } else {
           setQuestionData(data);
           setTimeLeft(data.question.time);
         }
       }
     } catch (error) {
-      alert(`Invalid: ${error}`);
+      console.error('Error fetching question:', error);
     }
   };
   const handleSubmit = async () => {
@@ -123,6 +129,9 @@ function Game () {
       fetchCorrectAnswers();
     }
   }, [timeLeft]);
+  useEffect(() => {
+    handleSubmit();
+  }, [selectedAnswers]);
   return (
     <>
       <div style={{ color: 'white' }}>
@@ -171,9 +180,9 @@ function Game () {
   <div>
     <h3>Correct answers:</h3>
     <ul>
-      {correctAnswers.map((answerIndex) => (
-        <li key={answerIndex}>{correctAnswers}</li>
-      ))}
+    {correctAnswers.map((answerIndex) => (
+  <li key={answerIndex}>{questionData.question.answers[answerIndex].text}</li>
+    ))}
     </ul>
   </div>
 )}

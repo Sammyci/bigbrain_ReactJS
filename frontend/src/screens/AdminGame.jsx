@@ -22,7 +22,7 @@ function AdminGame () {
   const [gameData, setGameData] = useState([]);
   const [sessionId, setSessionId] = useState([])
   const [showCopyDialog, setShowCopyDialog] = useState(false);
-  const [remainingQuestions, setRemainingQuestions] = useState(null);
+  const [remainingQuestionsMap, setRemainingQuestionsMap] = useState({});
   const navigate = useNavigate();
   useEffect(() => {
     if (token) {
@@ -68,7 +68,10 @@ function AdminGame () {
         console.log(data)
         alert('Game Started!')
         const game = gameData.find((game) => game.id === gameId);
-        setRemainingQuestions(game.quizzes.length);
+        setRemainingQuestionsMap((prevRemainingQuestionsMap) => ({
+          ...prevRemainingQuestionsMap,
+          [gameId]: game.quizzes.length,
+        }));
         try {
           const request = await encapFetch('admin/quiz/', token, 'GET', `${gameId}`)
           console.log(request)
@@ -88,7 +91,6 @@ function AdminGame () {
     } catch (error) {
     }
   }
-
   const copySessionId = () => {
     const urlToCopy = `localhost:3000/play/${sessionId}`;
     navigator.clipboard.writeText(urlToCopy).then(
@@ -137,12 +139,15 @@ function AdminGame () {
         if (request.status === 200) {
           console.log('Advanced to next question');
           console.log('Advanced to next question');
-          setRemainingQuestions((prevRemainingQuestions) => prevRemainingQuestions - 1);
         } else throw request.status
       } catch (error) {
         console.log(error)
       }
     }
+    setRemainingQuestionsMap((prevRemainingQuestionsMap) => ({
+      ...prevRemainingQuestionsMap,
+      [gameId]: prevRemainingQuestionsMap[gameId] - 1,
+    }));
 
     try {
       advanceQuestionRequest();
@@ -150,7 +155,6 @@ function AdminGame () {
       alert(`Couldnt Get Quiz Session: ${error}`);
     }
   };
-
   return (
     <>
     {showCopyDialog && (
@@ -194,8 +198,17 @@ function AdminGame () {
                 </td>
                 <td>
                   {/* Next question button */}
-                  <button onClick={() => nextQuestion(game.id)}>
-                    {remainingQuestions > 0 ? 'Next' : 'No more questions'}
+                  <button
+                    onClick={() => nextQuestion(game.id)}
+                    style={{
+                      backgroundColor:
+                        remainingQuestionsMap[game.id] > 0 ? undefined : 'red',
+                    }}
+                    disabled={remainingQuestionsMap[game.id] <= 0}
+                  >
+                    {remainingQuestionsMap[game.id] > 0
+                      ? 'Next'
+                      : 'No more questions'}
                   </button>
                 </td>
                 <td>

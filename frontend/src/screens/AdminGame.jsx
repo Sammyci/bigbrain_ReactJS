@@ -23,6 +23,7 @@ function AdminGame () {
   const [sessionId, setSessionId] = useState([])
   const [showCopyDialog, setShowCopyDialog] = useState(false);
   const [remainingQuestionsMap, setRemainingQuestionsMap] = useState({});
+  const [currentQuestionNumberMap, setCurrentQuestionNumberMap] = useState({});
   const navigate = useNavigate();
   useEffect(() => {
     if (token) {
@@ -71,6 +72,10 @@ function AdminGame () {
         setRemainingQuestionsMap((prevRemainingQuestionsMap) => ({
           ...prevRemainingQuestionsMap,
           [gameId]: game.quizzes.length,
+        }));
+        setCurrentQuestionNumberMap((prevCurrentQuestionNumberMap) => ({
+          ...prevCurrentQuestionNumberMap,
+          [gameId]: 1,
         }));
         try {
           const request = await encapFetch('admin/quiz/', token, 'GET', `${gameId}`)
@@ -148,6 +153,10 @@ function AdminGame () {
       ...prevRemainingQuestionsMap,
       [gameId]: prevRemainingQuestionsMap[gameId] - 1,
     }));
+    setCurrentQuestionNumberMap((prevCurrentQuestionNumberMap) => ({
+      ...prevCurrentQuestionNumberMap,
+      [gameId]: prevCurrentQuestionNumberMap[gameId] + 1,
+    }));
 
     try {
       advanceQuestionRequest();
@@ -207,10 +216,11 @@ function AdminGame () {
                     disabled={remainingQuestionsMap[game.id] <= 0}
                   >
                     {remainingQuestionsMap[game.id] > 0
-                      ? 'Next'
+                      ? `Next (${currentQuestionNumberMap[game.id] || 0}/${game.quizzes.length})`
                       : 'No more questions'}
                   </button>
                 </td>
+
                 <td>
                   {/* Result button */}
                   <button>Result</button>

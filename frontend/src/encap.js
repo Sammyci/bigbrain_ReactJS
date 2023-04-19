@@ -5,7 +5,12 @@
 const getJSON = (request) =>
   fetch(request)
     .then((res) => {
-      return res.json();
+      const contentType = res.headers.get('Content-Type');
+      if (contentType && contentType.indexOf('application/json') !== -1) {
+        return res.json();
+      } else {
+        throw new Error(`Non-JSON response with status ${res.status}`);
+      }
     })
     .catch((err) => console.warn(`API_ERROR: ${err.message}`));
 

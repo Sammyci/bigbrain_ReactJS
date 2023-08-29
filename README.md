@@ -12,7 +12,9 @@
 
 ## 0. Change Log
 
-N/A
+* 02/04/2023: General edit clause added to 2.2.2
+* 02/04/2023: Comments about advancing added to 2.3.1
+* 04/04/2023: Few helpful tips and elaborations based on questions students ask - see commit for more details.
 
 ## 1. Background & Motivation
 
@@ -66,6 +68,7 @@ A series of features below need to be implemented in your ReactJS app to operate
  * A unique route must exist for this screen that is parameterised on the game ID
  * This screen allows users to select the question they want to edit
  * This screen allows users to delete a particular question, or add a new question
+ * This screen should also allow the editing of game meta data such as name and thumbnail
 
 #### 2.2.3. Edit BigBrain Game Question
  * A unique route must exist for this screen that is parameterised both on the Game ID and the question ID
@@ -90,9 +93,10 @@ A series of features below need to be implemented in your ReactJS app to operate
  * On the dashboard page, the ability to stop a started game.
  * When the game is stopped, a popup appears that prompts the admin "Would you like to view the results?" If they click yes, they are taken to the screen described in `2.3.3`
 
-#### 2.3.3. Getting the results of a game
+#### 2.3.3. Advancing & getting the results of a game
  * A unique route must exist for this screen that is parameterised on the session ID
- * Once the screen loads, it should display the following:
+ * Once the screen loads, and the game hasn't finished, it should allow the admin to advance to the next question or stop the game.
+ * Once the screen loads, and the game has finished, it should display the following:
    * Table of up to top 5 users and their score
    * Bar/Line chart showing a breakdown of what percentage of people (Y axis) got certain questions (X axis) correct
    * Some chart showing the average response/answer time for each question
@@ -105,7 +109,8 @@ A series of features below need to be implemented in your ReactJS app to operate
  * A user is able to enter a session ID and their own name to attempt to join the session. If succesful, they're taken to `2.4.2`.
 
 #### 2.4.2. Play Game
- * On this screen the user is given the current question being asked. This consists of:
+ * If the game has not yet started (i.e. have not advanced to the first question) a screen can exist that just says "Please wait".
+ * Once advanced onto at least the first question, the user is now on a screen that gives the current question being asked. This consists of:
    * The question text
    * A video or image depending on whether it exists.
    * A countdown with how many seconds remain until you can't answer anymore.
@@ -167,6 +172,8 @@ Tests must be run from inside the `frontend` folder by running `npm run test`.
 You can welcome to use `enzyme` for testing if you prefer - as long as everything works by running `npm run test`.
 
 If you're having issues using Cypress on WSL2, try following [this guide](https://shouv.medium.com/how-to-run-cypress-on-wsl2-989b83795fb6).
+
+A common question we get about component testing is 'what components do I test? I just only used a framework set of components'. The most common way students test components is by often creating a small abstract component where you put your own custom styles or properties. E.G. Creating a `MyButton` that wraps a MUI `Button`.
 
 ### 2.8. Other notes
  * The port you can use to `fetch` data from the backend is defined in `frontend/src/config.json`
@@ -316,6 +323,7 @@ Your assignment will be hand-marked by tutor(s) in the course according to the c
         <li>Any extra features written down in `BONUS.md` in the project folder</li>
         <li>Any bonus marks that extend your ass3 mark above 100% will bleed into other assignment marks, but cannot contribute outside of the 80% of the course that is allocated for assignment marks</li>
         <li><b>Expectations placed on solo groups will be half of that of pairs to achieve the same mark.</b></li>
+        <li>If you are working individually and complete Advanced Features (section 2.5) in it's entirety (and high quality) you can receive full marks for bonus marks.</li>
       </ul>
     </td>
   </tr>
@@ -353,15 +361,11 @@ knowledge.
 
 This assignment is due *Wednesday the 19th of April, 10pm*.
 
-To submit your assignment, you must complete the following two steps in order: Ensure you've pushed all of your code to your gitlab master branch. You can check if you've done this properly by seeing what code is on the gitlab site on your master branch.
-
-This will submit the latest commit on master as your submission.
-
-You do NOT have to run a submit command for this assignment.
+To submit your assignment, you must you've pushed all of your code to your gitlab master branch. You can check if you've done this properly by seeing what code is on the gitlab site on your master branch.
+ 
+We will collect the latest work on your master branch of gitlab at the time of submission.
 
 It is your responsibiltiy to ensure that your code can run successfully when cloned fresh from Gitlab.
-
-For pairs, only one team member needs to submit.
 
 ### Dryrun
 
